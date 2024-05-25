@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Disease Prediction Result</title>
+ <link rel="stylesheet" href="/static/style.css">
+ <script src="script.js" defer></script>
+</head>
+<body onload="scrollToResultSection()">
+ <header class="header">
+    <div class="menu-btn-container">
+      <button type="button" class="menu-btn" onclick="toggleSidebar()">Menu</button>
+    </div>
+    <nav id="nav" class="nav hidden">
+      <ol class="nav-items">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="#heart-disease-prediction">Heart Disease</a></li>
+        <li class="nav-item"><a href="#diabetes">Diabetes</a></li>
+        <li class="nav-item"><a href="cancer.html">Cancer</a></li>
+      </ol>
+    </nav>
+    <div class="container">
+      <h1>Disease Prediction</h1>
+      <p>Predict your risk of heart disease, diabetes, and cancer.</p>
+    </div>
+ </header>
+
+ <main>
+    <section class="intro">
+      <div class="container">
+        <h2>Welcome to Disease Prediction</h2>
+        <p>Select a disease from the menu to start your prediction.</p>
+      </div>
+    </section>
+
+    <!-- Heart Disease Prediction Result Section -->
+    <section id="heart-disease-prediction-result"  action="/result" class="prediction-section">
+      <h2>Heart Disease Prediction Result</h2>
+      <div class="container">
+        <h1>Heart Disease Prediction Result</h1>
+        <p>Risk Level: {{ risk_level }}</p>
+        
+        
+        <!-- Display the recommendations -->
+        <div class="recommendations">
+          <h3>Recommendations:</h3>
+          <ul>
+          {% for recommendation in recommendations %}
+              <li>{{ recommendation }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+ 
+      </div>
+    </section>
+    
+    <!-- Diabetes Prediction Result Section -->
+    <section id="diabetes-prediction-result" action="/result" class="prediction-section">
+      <h2>Diabetes Prediction Result</h2>
+      <div class="container">
+        <h1>Diabetes Prediction Result</h1>
+        <p>Risk Level: {{ risk_level }}</p>
+        
+        <!-- Display the recommendations -->
+        <div class="recommendations">
+          <h3>Recommendations:</h3>
+          <ul>
+          {% for recommendation in diabetes_recommendations %}
+              <li>{{ recommendation }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+ 
+      </div>
+    </section>
+
+    <!-- Cancer Prediction Result Section -->
+    <section id="cancer-prediction-result" action="/result" class="prediction-section">
+      <h2>Cancer Prediction Result</h2>
+      <div class="container">
+        <h1>Cancer Prediction Result</h1>
+        <p>Risk Level: {{ risk_level }}</p>
+        
+        <!-- Display the recommendations -->
+        <div class="recommendations">
+          <h3>Recommendations:</h3>
+          <ul>
+          {% for recommendation in cancer_recommendations %}
+              <li>{{ recommendation }}</li>
+          {% endfor %}
+          </ul>
+        </div>
+ 
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2023 Disease Prediction. All rights reserved.</p>
+      </div>
+    </footer>
+ </main>
+
+ <script>
+  function scrollToResultSection() {
+      var resultSection = document.getElementById('heart-disease-prediction-result');
+      if (resultSection) {
+          resultSection.scrollIntoView({behavior: "smooth", block: "start"});
+      }
+  }
+  
+  /* JavaScript Function to Toggle Menu */
+  function toggleSidebar() {
+      document.getElementById('nav').classList.toggle('open');
+  }
+  /* JavaScript Function to Toggle Menu */
+  function toggleSidebar() {
+      var currentPage = window.location.href;
+      if (currentPage.includes("result.html")) {
+          window.location.href = "index.html";
+      } else {
+          document.getElementById('nav').classList.toggle('open');
+      }
+  }
+   </script>
+</body>
+</html>

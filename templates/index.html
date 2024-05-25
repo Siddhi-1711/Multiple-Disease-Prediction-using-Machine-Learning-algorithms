@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Disease Prediction</title>
+ <link rel="stylesheet" href="/static/style.css">
+
+ <script src="script.js" defer></script>
+</head>
+<body>
+ <header class="header">
+    <div class="menu-btn-container">
+      <button type="button" class="menu-btn" onclick="toggleSidebar()">Menu</button>
+
+    </div>
+    <nav id="nav" class="nav hidden">
+      <ol class="nav-items">
+        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="#heart-disease-prediction">Heart Disease</a></li>
+        <li class="nav-item"><a href="#diabetes-prediction">Diabetes</a></li>
+        <li class="nav-item"><a href="#cancer-prediction">Cancer</a></li>
+      </ol>
+    </nav>
+    <div class="container">
+      <h1>Disease Prediction</h1>
+      <p>Predict your risk of heart disease, diabetes, and cancer.</p>
+    </div>
+ </header>
+
+ <main>
+    <section class="intro">
+      <div class="container">
+        <h2>Welcome to Disease Prediction</h2>
+        <p>Select a disease from the menu to start your prediction.</p>
+      </div>
+    </section>
+
+     <!-- Heart Disease Prediction Section -->
+     <section id="heart-disease-prediction" class="prediction-section">
+      <h2>Heart Disease Prediction</h2>
+      <div class="container">
+         <form id="heart-disease-form" action="/predict/heart_disease" method="post">
+           <div class="form-group">
+             <input type="number" id="age" name="age" required placeholder="Age">
+             <label for="age" class="form-label">Age:</label>
+           </div>
+           <div class="form-group">
+             <select id="sex" name="sex" required>
+              <option value="" disabled selected>Select Sex</option>
+               <option value="0">Male</option>
+               <option value="1">Female</option>
+             </select>
+             <label for="sex" class="form-label">Sex:</label>
+           </div>
+           <div class="form-group">
+             <select id="cp" name="cp" required>
+              <option value="" disabled selected>Select Chest Pain Type</option>
+               <option value="0">Typical Angina</option>
+               <option value="1">Atypical Angina</option>
+               <option value="2">Non-Anginal Pain</option>
+               <option value="3">Asymptomatic</option>
+             </select>
+             <label for="cp" class="form-label">Chest Pain Type:</label>
+           </div>
+           <div class="form-group">
+             <input type="number" id="trestbps" name="trestbps" required placeholder="Resting Blood Pressure">
+             <label for="trestbps" class="form-label">Resting Blood Pressure:</label>
+           </div>
+           <div class="form-group">
+             <input type="number" id="chol" name="chol" required placeholder="Cholesterol Level">
+             <label for="chol" class="form-label">Cholesterol Level:</label>
+           </div>
+           <div class="form-group">
+             <select id="fbs" name="fbs" required>
+              <option value="" disabled selected>Select Fasting Blood Sugar</option>
+               <option value="0">Greater than 120 mg/dl</option>
+               <option value="1">&lt;= 120 mg/dl</option>
+             </select>
+             <label for="fbs" class="form-label">Fasting Blood Sugar:</label>
+           </div>
+           <div class="form-group">
+             <select id="restecg" name="restecg" required>
+              <option value="" disabled selected>Select ECG Results</option>
+               <option value="0">Normal</option>
+               <option value="1">Having ST-T wave abnormality</option>
+               <option value="2">Showing probable or definite left ventricular hypertrophy by Estes' criteria</option>
+             </select>
+             <label for="restecg" class="form-label">Resting Electrocardiographic Results:</label>
+           </div>
+           <div class="form-group">
+             <input type="number" id="thalach" name="thalach" required placeholder="Maximum Heart Rate Achieved">
+             <label for="thalach" class="form-label">Maximum Heart Rate Achieved:</label>
+           </div>
+           <div class="form-group">
+             <select id="exang" name="exang" required>
+              <option value="" disabled selected>Select Exercise-Induced Angina</option>
+               <option value="0">No</option>
+               <option value="1">Yes</option>
+             </select>
+             <label for="exang" class="form-label">Exercise-Induced Angina:</label>
+           </div>
+           <div class="form-group">
+             <input type="number" id="oldpeak" name="oldpeak" required placeholder="ST Depression Induced by Exercise Relative to Rest">
+             <label for="oldpeak" class="form-label">ST Depression Induced by Exercise Relative to Rest:</label>
+           </div>
+           <div class="form-group">
+             <select id="slope" name="slope" required>
+              <option value="" disabled selected>Select ST Segment Slope</option>
+               <option value="0">Upsloping</option>
+               <option value="1">Flat</option>
+               <option value="2">Downsloping</option>
+             </select>
+             <label for="slope" class="form-label">Slope of the Peak Exercise ST Segment:</label>
+           </div>
+           <div class="form-group">
+             <input type="number" id="ca" name="ca" required placeholder="Number of Major Vessels Colored by Fluoroscopy">
+             <label for="ca" class="form-label">Number of Major Vessels Colored by Fluoroscopy:</label>
+           </div>
+           <div class="form-group">
+             <select id="thal" name="thal" required>
+              <option value="" disabled selected>Select Thallium Stress Test Result</option>
+               <option value="0">Normal</option>
+               <option value="1">Fixed Defect</option>
+               <option value="2">Reversible Defect</option>
+             </select>
+             <label for="thal" class="form-label">Thallium Stress Test:</label>
+           </div>
+           <button type="submit">Predict</button>
+         </form>
+      </div>
+     </section>
+     
+
+
+  <!-- Diabetes Prediction Section -->
+<section id="diabetes-prediction" class="prediction-section ">
+  <h2>Diabetes Prediction</h2>
+  <div class="container">
+       
+       <form id="diabetes-form" action="/predict/diabetes" method="post">
+        <div class="form-group">
+          <label for="pregnancies" class="form-label"></label>
+         <input type="number" id="pregnancies" name="pregnancies" required placeholder="Pregnancies">
+        </div>
+         
+        <div class="form-group">
+         <label for="glucose" class="form-label"></label>
+         <input type="number" id="glucose" name="glucose" required placeholder="Glucose">
+        </div>
+        <div class="form-group">
+          <label for="bloodPressure" class="form-label"></label>
+         <input type="number" id="bloodPressure" name="bloodPressure" required placeholder="Blood Pressure">
+        </div>
+         
+        <div class="form-group">
+          <label for="skinThickness" class="form-label"></label>
+         <input type="number" id="skinThickness" name="skinThickness" required placeholder="Skin Thickness">
+        </div>
+         
+        <div class="form-group">
+         <label for="insulin" class="form-label"></label>
+         <input type="number" id="insulin" name="insulin" required placeholder="Insulin">
+        </div>
+        <div class="form-group">
+         <label for="bmi" class="form-label"></label>
+         <input type="number" id="bmi" name="bmi" required placeholder="BMI">
+        </div>
+        <div class="form-group">
+         <label for="diabetesPedigreeFunction" class="form-label"></label>
+         <input type="number" id="diabetesPedigreeFunction" name="diabetesPedigreeFunction" required placeholder="Diabetes Pedigree Function">
+        </div>
+        <div class="form-group">
+         <label for="age" class="form-label"></label>
+         <input type="number" id="age" name="age" required placeholder="Age">
+        </div>
+         <button type="submit">Predict</button>
+     </form>
+     
+  </div>
+ </section>
+
+ <!-- Cancer Prediction Section -->
+ <section id="cancer-prediction" class="prediction-section">
+  <h2>Cancer Prediction</h2>
+  <div class="container">
+      <form id="cancer-form" action="/predict/cancer" method="post">
+        <div class="form-group">
+          <label for="texture_mean" class="form-label"></label>
+       <input type="number" id="texture_mean" name="texture_mean" required placeholder="Texture Mean">
+      </div>
+      <div class="form-group">
+        <label for="smoothness_mean"class="form-label"></label>
+        <input type="number" id="smoothness_mean" name="smoothness_mean" required placeholder="Smoothness Mean">
+ 
+    </div>
+    <div class="form-group">
+      <label for="compactness_mean" class="form-label"></label>
+       <input type="number" id="compactness_mean" name="compactness_mean" required placeholder="Compactness Mean">
+  </div>
+  <div class="form-group">
+    <label for="concave_points_mean" class="form-label"></label>
+       <input type="number" id="concave_points_mean" name="concave_points_mean" required placeholder="Concave Points Mean">
+</div>
+<div class="form-group">
+  <label for="symmetry_mean" class="form-label"></label>
+       <input type="number" id="symmetry_mean" name="symmetry_mean" required placeholder="Symmetry Mean">
+</div>
+<div class="form-group">
+  <label for="fractal_dimension_mean" class="form-label"></label>
+       <input type="number" id="fractal_dimension_mean" name="fractal_dimension_mean" required placeholder="Fractal Dimension Mean">
+</div>
+<div class="form-group">
+  <label for="texture_se" class="form-label"></label>
+       <input type="number" id="texture_se" name="texture_se" required placeholder="Texture SE">
+</div>
+<div class="form-group">
+  <label for="area_se" class="form-label"></label>
+       <input type="number" id="area_se" name="area_se" required placeholder="Area SE">
+</div>
+<div class="form-group">
+  <label for="smoothness_se" class="form-label"></label>
+       <input type="number" id="smoothness_se" name="smoothness_se" required placeholder="Smoothness SE">
+       
+</div>
+<div class="form-group">
+  <label for="compactness_se" class="form-label"></label>
+       <input type="number" id="compactness_se" name="compactness_se" required placeholder="Compactness SE">
+</div>
+<div class="form-group">
+  <label for="concavity_se" class="form-label"></label>
+       <input type="number" id="concavity_se" name="concavity_se" required placeholder="Concavity SE">
+</div>
+<div class="form-group">
+  <label for="concave_points_se" class="form-label"></label>
+       <input type="number" id="concave_points_se" name="concave_points_se" required placeholder="Concave Points SE">
+</div>
+<div class="form-group">
+  <label for="symmetry_se" class="form-label"></label>
+       <input type="number" id="symmetry_se" name="symmetry_se" required placeholder="Symmetry SE">
+</div>
+<div class="form-group">
+  <label for="fractal_dimension_se" class="form-label" ></label>
+       <input type="number" id="fractal_dimension_se" name="fractal_dimension_se" required placeholder="Fractal Dimension SE">
+</div>
+<div class="form-group">
+  <label for="texture_worst" class="form-label"></label>
+       <input type="number" id="texture_worst" name="texture_worst" required placeholder="Texture Worst">
+</div>
+<div class="form-group">
+  <label for="area_worst" class="form-label"></label>
+       <input type="number" id="area_worst" name="area_worst" required placeholder="Area Worst">
+</div>
+<div class="form-group">
+  <label for="smoothness_worst" class="form-label"></label>
+       <input type="number" id="smoothness_worst" name="smoothness_worst" required placeholder="Smoothness Worst">
+</div>
+<div class="form-group">
+  <label for="compactness_worst" class="form-label"></label>
+       <input type="number" id="compactness_worst" name="compactness_worst" required placeholder="Compactness Worst">
+</div>
+<div class="form-group">
+  <label for="concavity_worst" class="form-label"></label>
+       <input type="number" id="concavity_worst" name="concavity_worst" required placeholder="Concavity Worst">
+</div>
+<div class="form-group">
+  <label for="concave_points_worst" class="form-label"></label>
+       <input type="number" id="concave_points_worst" name="concave_points_worst" required placeholder="Concave Points Worst">
+</div>
+<div class="form-group">
+  <label for="symmetry_worst" class="form-label" ></label>
+       <input type="number" id="symmetry_worst" name="symmetry_worst" required placeholder="Symmetry Worst">
+</div>
+<div class="form-group">
+  <label for="fractal_dimension_worst" class="form-label" ></label>
+  <input type="number" id="fractal_dimension_worst" name="fractal_dimension_worst" required placeholder="Fractal Dimension Worst">
+</div>
+
+
+
+        <button type="submit">Predict</button>
+      </form>
+  </div>
+ </section>
+ 
+ 
+
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Disease Prediction. All rights reserved.</p>
+      </div>
+   </footer>
+ </main>
+
+ 
+
+ <script>
+/* JavaScript Function to Toggle Menu */
+function toggleSidebar() {
+    document.getElementById('nav').classList.toggle('open');
+}
+
+ </script>
+</body>
+</html>
